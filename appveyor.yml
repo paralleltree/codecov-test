@@ -24,7 +24,7 @@ test_script:
 
     & $opencover -register:user -target:nunit-console.exe "-targetargs:$targetargs" "-filter:$filter" -returntargetcode -hideskipped:All -output:coverage.xml
 after_test:
-  - ps: |
+- ps: |
     $env:PATH = 'C:\msys64\usr\bin;' + $env:PATH
     Invoke-WebRequest -Uri 'https://codecov.io/bash' -OutFile codecov.sh
     bash codecov.sh -f "coverage.xml"
